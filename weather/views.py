@@ -22,8 +22,10 @@ def index(request):
         'temperature': res['main']['temp'],
         'description': res['weather'][0]['description'],
         'icon': res['weather'][0]['icon'],
+        'longitude': res['coord']['lon'],
+        'latitude': res['coord']['lat'],
     }
 
-    context = {'city_weather': city_weather}
+    context = {'city_weather': city_weather, 'mapbox_access_token' : config.mapbox_access_token}
 
     return render(request, 'weather/index.html', context)
