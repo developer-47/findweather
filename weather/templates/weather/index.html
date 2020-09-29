@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <title>Document</title>
+</head>
+
+<body>
+
+    <h1 class="title">
+        What's the weather like?
+
+        {% if error %}
+            <div>
+                {{ error }}
+            </div>
+        {% endif %}
+
+        <form method="POST" action="">
+            {% csrf_token %}
+
+            <input type="text" name='city' placeholder="City name">
+
+            <button type="submit" class="button is-info">
+                Enter
+            </button>
+            <br>
+
+            <img src="http://openweathermap.org/img/w/{{ city_weather.icon }}.png" alt="Image">
+
+            <br>
+            <span>{{ city_weather.city }}</span>
+            <br>
+            <span>{{ city_weather.temperature }}° C</span>
+            <br> {{ city_weather.description }}
+        </form>    
+
+</body>
+
+</html>
