@@ -1,58 +1,113 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <title>Document</title>
+    <title>findweather</title>
+
+    <!----------Mapbox---------->
     <script src='https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.js'></script>
     <link href='https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.css' rel='stylesheet' />
+
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+    <!----------Main CSS-------->
+    <link rel="stylesheet" type="text/css" href="{% static 'weather/main.css' %}">
 </head>
 
 <body>
 
-    <h1 class="title">
-        What's the weather like?
+    <!-- The video -->
+    <video autoplay muted loop id="myVideo">
+        <source src="{% static 'weather/bg.mp4' %}" type="video/mp4">
+    </video>
 
-        {% if error %}
-            <div>
-                {{ error }}
+    <div class="d-flex justify-content-end pt-1 pr-2" id="ad">
+        <i class="pr-1">Free Stock Video by</i><a href="http://www.videezy.com"
+            style="color: whitesmoke;"><i><u>Videezy!</u></i></a>
+    </div>
+
+    <div class="container">
+        <section id='headerarea'>
+            <h1 class="d-flex justify-content-center pt-4 pb-4">
+                What's the weather like?
+            </h1>
+
+            <form method="POST" class="form-group">
+                {% csrf_token %}
+
+                <div class="row align-items-center d-flex justify-content-center pt-5">
+                    <span>
+                        <input class="row form-control form-control-lg" type="text" name='city'
+                            placeholder="City name ........">
+                    </span>
+                    <span>
+                        <button class="row btn btn-dark btn-lg" type="submit">Enter</button>
+                    </span>
+                </div>
+
+
+                <div class="row align-items-center pt-3">
+                    <span class="col d-flex justify-content-center">
+                        <img src="http://openweathermap.org/img/w/{{ city_weather.icon }}.png" alt="Image">
+                    </span>
+                </div>
+                <div class="row align-items-center d-flex justify-content-center">{{ city_weather.city }}
+                </div>
+                <div class="row align-items-center d-flex justify-content-center">Description:
+                    {{ city_weather.description }}
+                </div>
+                <div class="row align-items-center d-flex justify-content-center pb-3">{{ city_weather.temperature }}° C
+                </div>
+            </form>
+        </section>
+
+    </div>
+    </section>
+
+    <section id='maparea'>
+        <div class="container pt-4">
+            <div class="d-flex justify-content-center">
+                <div id='map' style='width: 40vw; height: 40vh;'></div>
             </div>
-        {% endif %}
+        </div>
+        <div class="row align-items-center d-flex justify-content-center pt-2"><i id="mapdirections">Directions: Use scroll for zoom and left click for drag</i>
+        </div>
+    </section>
 
-        <form method="POST" action="">
-            {% csrf_token %}
+    <script>
+        mapboxgl.accessToken = '{{mapbox_access_token}}';
+        longitude = '{{ city_weather.longitude }}';
+        latitude = '{{ city_weather.latitude }}';
+        var map = new mapboxgl.Map({
+            container: 'map',
+            style: 'mapbox://styles/mapbox/streets-v11',
+            center: [longitude, latitude],
+            zoom: 9
+        });
+        var marker = new mapboxgl.Marker()
+            .setLngLat([longitude, latitude])
+            .addTo(map);
+    </script>
 
-            <input type="text" name='city' placeholder="City name">
-
-            <button type="submit" class="button is-info">
-                Enter
-            </button>
-            <br>
-
-            <img src="http://openweathermap.org/img/w/{{ city_weather.icon }}.png" alt="Image">
-
-            <br>
-            <span>{{ city_weather.city }}</span>
-            <br>
-            <span>{{ city_weather.temperature }}° C</span>
-            <br> {{ city_weather.description }}
-        </form>    
-        <br>
-        <br>
-        <div id='map' style='width: 400px; height: 300px;'></div>
-        <script>
-            mapboxgl.accessToken = '{{mapbox_access_token}}';
-            longitude = '{{ city_weather.longitude }}';
-            latitude = '{{ city_weather.latitude }}';
-            var map = new mapboxgl.Map({
-                container: 'map',
-                style: 'mapbox://styles/mapbox/streets-v11',
-                center: [longitude, latitude],
-                zoom: 9
-            });
-            var marker = new mapboxgl.Marker()
-                .setLngLat([longitude, latitude])
-                .addTo(map);
-        </script>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+        integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+        crossorigin="anonymous"></script>
+</body>
 </body>
 
 </html>

@@ -1,0 +1,36 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@700&display=swap');
+
+#myVideo {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    min-width: 100%;
+    min-height: 100%;
+    z-index: -1;
+    filter:opacity(80%);
+  }
+
+#headerarea {
+    font-family: 'Raleway', sans-serif;
+    color: white;
+}
+
+#headerarea div {
+    font-size: 1.7rem;
+    text-shadow: 1px 1px black;
+}
+
+#map {
+    border-style: ridge;
+    border-width: 5px;
+}
+
+#ad {
+    color: white;
+}
+
+#mapdirections {
+    color: white;
+    text-shadow: 1px 1px black;
+    font-size: larger;
+}

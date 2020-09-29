@@ -1,21 +1,41 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
+    <title>Error Page</title>
 
-    <title>Document</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+    <!----------Main CSS-------->
+    <link rel="stylesheet" type="text/css" href="{% static 'weather/main.css' %}">
 </head>
 
 <body>
 
+    <!-- The video -->
+    <video autoplay muted loop id="myVideo">
+        <source src="{% static 'weather/bg.mp4' %}" type="video/mp4">
+    </video>
+    <section id='headerarea'>
     {% if error %}
-    <h1>
-        {{ error }}
-    </h1>
+        <h1 class="d-flex justify-content-center pt-5 pb-4">
+            {{ error }}
+        </h1>
+        <div class="row d-flex justify-content-center pb-5">
+            Please enter a valid city or try again...
+        </div>
     {% endif %}
-
-    <a href="">Home</a>
-
+    <div class="container d-flex justify-content-center">
+        <a href="" class="btn btn-dark btn-lg" style="width: 20vh;">Go Back</a>
+    </div>
+    </section>
 
 </body>
 

@@ -6,14 +6,14 @@ from . import config
 # Create your views here.
 def index(request):
     url = 'http://api.openweathermap.org/data/2.5/weather?q={}&units=metric&appid=' + config.api_key + ''
-    city = 'Noida'
+    city = 'Bolivia'
 
     if request.method == 'POST':    
         city = request.POST.get('city') 
         res = requests.get(url.format(city)).json()
         print(res)
         if int(res['cod']) != 200:
-            return render(request, 'weather/error.html', {'error': 'Invalid City'})    
+            return render(request, 'weather/error.html', {'error': 'Something went wrong!'})    
 
     res = requests.get(url.format(city)).json()
 
