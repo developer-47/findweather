@@ -14,8 +14,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
-        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="{% static 'weather/bootstrap.min.css' %}" >
 
     <!----------Main CSS-------->
     <link rel="stylesheet" type="text/css" href="{% static 'weather/main.css' %}">
@@ -32,6 +31,8 @@
         <i class="pr-1">Free Stock Video by</i><a href="http://www.videezy.com"
             style="color: whitesmoke;"><i><u>Videezy!</u></i></a>
     </div>
+
+    <!----------Header Area----------->
 
     <div class="container">
         <section id='headerarea'>
@@ -67,9 +68,9 @@
                 </div>
             </form>
         </section>
-
     </div>
-    </section>
+
+    <!-------------Map Area--------->
 
     <section id='maparea'>
         <div class="container pt-4">
@@ -77,7 +78,8 @@
                 <div id='map' style='width: 40vw; height: 40vh;'></div>
             </div>
         </div>
-        <div class="row align-items-center d-flex justify-content-center pt-2"><i id="mapdirections">Directions: Use scroll for zoom and left click for drag</i>
+        <div class="row align-items-center d-flex justify-content-center pt-2"><i id="mapdirections">Directions: Use
+                scroll for zoom and left click for drag</i>
         </div>
     </section>
 
@@ -95,18 +97,7 @@
             .setLngLat([longitude, latitude])
             .addTo(map);
     </script>
-
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-        crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
-        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
-        crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
-        integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
-        crossorigin="anonymous"></script>
+    
 </body>
 </body>
 
